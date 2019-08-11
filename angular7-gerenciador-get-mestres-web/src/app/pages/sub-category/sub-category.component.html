@@ -1,0 +1,36 @@
+<div class="container">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>SubCategoria</mat-label>
+    <input matInput [(ngModel)]="model.name"
+           type="text"
+           required
+           placeholder="Nome da SubCategoria">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width" col-50>
+    <mat-label>Custo</mat-label>
+    <input matInput [(ngModel)]="model.cost"
+           type="number"
+           required
+           placeholder="Preencha o custo da categoria">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width no-margin-right" col-50>
+    <mat-label>Categoria</mat-label>
+    <mat-select [(ngModel)]="model.category.uid">
+      <mat-option *ngFor="let category of categories" [value]="category.uid">
+        {{category.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Descrição</mat-label>
+    <textarea matInput [(ngModel)]="model.description" placeholder="Descriçao SubCategoria" rows="4"></textarea>
+  </mat-form-field>
+
+  <div class="toolbar___form">
+    <button mat-raised-button routerLink="/sub-categories">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+  </div>
+</div>

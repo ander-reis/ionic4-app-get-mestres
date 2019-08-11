@@ -1,0 +1,17 @@
+<div class="container">
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Categoria</mat-label>
+        <input matInput [(ngModel)]="category.name"
+               type="text"
+               required
+               placeholder="Nome da Categoria">
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput [(ngModel)]="category.description" placeholder="Descriçao Categoria" rows="4"></textarea>
+    </mat-form-field>
+    <div class="toolbar___form">
+        <button mat-raised-button routerLink="/categories">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+    </div>
+</div>
