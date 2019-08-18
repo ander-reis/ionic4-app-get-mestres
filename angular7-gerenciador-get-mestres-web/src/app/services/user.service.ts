@@ -40,4 +40,8 @@ export class UserService extends BaseService<any> {
     get isStaticLogged(): boolean {
         return !!localStorage.getItem('getmestres:token');
     }
+
+    static get token(): string {
+        return localStorage.getItem('getmestres:token');
+    }
 }

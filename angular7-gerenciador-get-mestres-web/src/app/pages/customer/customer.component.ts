@@ -47,5 +47,4 @@ export class CustomerComponent implements OnInit {
             this.model.photo = file.base64Data;
         }
     }
-
 }

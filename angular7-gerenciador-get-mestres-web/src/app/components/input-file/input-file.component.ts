@@ -5,7 +5,6 @@ export class FileManager {
     name: string;
     extension: string;
     base64Data: string;
-
 }
 
 @Component({
@@ -27,6 +26,7 @@ export class InputFileComponent implements OnInit, OnChanges {
     }
 
     ngOnInit() {
+        this._populatePreLoadImage(this.image);
     }
 
     ngOnChanges(changes): void {

@@ -3,8 +3,6 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ResultHttpInterface} from "../interfaces/ResultHttpInterface";
 import {NgxSpinnerService} from "ngx-spinner";
 import Swal from 'sweetalert2';
-import {isCombinedNodeFlagSet} from "tslint";
-
 
 @Injectable({
     providedIn: 'root'
@@ -15,7 +13,6 @@ export class HttpService {
     }
 
     private createHeader(header?: HttpHeaders): HttpHeaders {
-        const token: string = localStorage.getItem('getmestres:token');
 
         if (!header) {
             header = new HttpHeaders();
@@ -23,6 +20,8 @@ export class HttpService {
 
         header = header.append('Content-Type', 'application/json');
         header = header.append('Accept', 'application/json');
+
+        const token = localStorage.getItem('getmestres:token');
         if (token) {
             //console.log('token http.service: ', token);
             header = header.append('x-access-token', token);
@@ -79,7 +78,7 @@ export class HttpService {
                     if (Array.isArray(error.error)) {
                         error.error.forEach(element => {
                             errorText += `<li style="text-align: left">${element.message || element}</li>;`
-                        })
+                        });
                         errorText += '</ul>';
                         Swal.fire('Atenção', errorText, 'warning');
                     }

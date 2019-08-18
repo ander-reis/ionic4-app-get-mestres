@@ -1,4 +1,7 @@
 <div class="container">
+
+  <app-input-file [image]="model.photo" (select)="selectedFile($event)"></app-input-file>
+
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Nome</mat-label>
     <input matInput [(ngModel)]="model.name"
@@ -39,10 +42,27 @@
            placeholder="Digite a senha novamente">
   </mat-form-field>
 
-  <app-input-file [image]="model.photo" (select)="selectedFile($event)"></app-input-file>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Opções</mat-label>
+    <textarea matInput [(ngModel)]="model.description" placeholder="Descreva a descrição" rows="4"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Endereço</mat-label>
+    <input matInput [(ngModel)]="model.address"
+           type="text"
+           placeholder="Preencha o endereço">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Complemento</mat-label>
+    <input matInput [(ngModel)]="model.addressComplement"
+           type="text"
+           placeholder="Preencha o complemento do endereço">
+  </mat-form-field>
 
   <div class="toolbar___form">
-    <button mat-raised-button routerLink="/customers">Cancelar</button>
+    <button mat-raised-button routerLink="/service-providers">Cancelar</button>
     <button mat-raised-button color="primary" (click)="save()">Salvar</button>
   </div>
 </div>

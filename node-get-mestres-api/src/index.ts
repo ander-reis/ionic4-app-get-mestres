@@ -14,7 +14,7 @@ const app = express();
 /**
  * converte para json
  */
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 /**
  * habilita cors
  */
@@ -32,8 +32,10 @@ Routes.forEach(route => {
         if (result instanceof Promise) {
             // result.then(result => result !== null && result !== undefined ? res.send(result) : undefined);
             result.then((d) => {
-                if(d && d.status){
+                if (d && d.status) {
                     res.status(d.status).send(d.message || d.errors);
+                } else if (d && d.file) {
+                    res.sendFile(d.file);
                 } else {
                     res.json(d);
                 }
@@ -46,10 +48,10 @@ Routes.forEach(route => {
 
 app.listen(config.port, '0.0.0.0', async () => {
     console.log(`Api initialize in port ${config.port}`);
-    try{
+    try {
         await createConnection();
         console.log('Database connected');
-    }catch (error) {
+    } catch (error) {
         console.error('Database not connected', error);
     }
 });

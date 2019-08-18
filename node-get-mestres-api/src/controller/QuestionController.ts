@@ -7,7 +7,7 @@ import {QuestionType} from "../entity/enum/QuestionType";
 export class QuestionController extends BaseController<Question> {
 
     constructor() {
-        super(Question);
+        super(Question, false);
     }
 
     save(request: Request) {

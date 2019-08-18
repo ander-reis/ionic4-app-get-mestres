@@ -39,7 +39,8 @@ export abstract class BaseController<T> extends BaseNotification {
             return this.errorRoot;
         }
 
-        return this._repository.findOne(request.params.id);
+        const uid = request.params.is as string;
+        return this._repository.findOne(uid);
     }
 
     async save(model: any, request: Request, ignorePermissions: boolean = false) {
@@ -56,10 +57,11 @@ export abstract class BaseController<T> extends BaseNotification {
             delete model['createAt'];
             delete model['updateAt'];
             delete model['deleted'];
-            delete model['password'];
-            delete model['confirmPassword'];
+            // delete model['password'];
+            // delete model['confirmPassword'];
 
-            let _modelInDB = await this._repository.findOne(model.uid);
+            const uid = model.uid as string;
+            let _modelInDB = await this._repository.findOne(uid);
 
             if (_modelInDB) {
                 Object.assign(_modelInDB, model);
@@ -82,7 +84,7 @@ export abstract class BaseController<T> extends BaseNotification {
             return this.errorRoot;
         }
 
-        let uid = request.params.id;
+        let uid = request.params.id as string;
         let model: any = await this._repository.findOne(uid);
         if (model) {
             model.deleted = true;
@@ -102,7 +104,6 @@ export abstract class BaseController<T> extends BaseNotification {
     }
 
     public checkNotPermission(request: Request) {
-        // return (this._onlyRootController && !request.isRoot);
-        return false;
+        return (this._onlyRootController && request.isRoot);
     }
 }
