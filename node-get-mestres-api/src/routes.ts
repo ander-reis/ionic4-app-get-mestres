@@ -7,6 +7,7 @@ import {ServiceProviderController} from "./controller/ServiceProviderController"
 import {RequestOrderController} from "./controller/RequestOrderController";
 import {RequestAnswersController} from "./controller/RequestAnswersController";
 import {StorageController} from "./controller/StorageController";
+import {AddressController} from "./controller/AddressController";
 
 export const Routes = [{method: "get", route: "/users", controller: UserController, action: "all"},
 
@@ -19,6 +20,7 @@ export const Routes = [{method: "get", route: "/users", controller: UserControll
 
     // category
     {method: "get", route: "/category", controller: CategoryController, action: "all"},
+    {method: "get", route: "/category/:id/sub-categories", controller: CategoryController, action: "getAllSubCategories"},
     {method: "get", route: "/category/:id", controller: CategoryController, action: "one"},
     {method: "post", route: "/category", controller: CategoryController, action: "save"},
     {method: "delete", route: "/category/:id", controller: CategoryController, action: "remove"},
@@ -62,4 +64,8 @@ export const Routes = [{method: "get", route: "/users", controller: UserControll
 
     // storage
     {method: "get", route: "/storage/:filename", controller: StorageController, action: "getFile"},
+
+    // statesCities.json
+    {method: "get", route: "/address/", controller: AddressController, action: "getAllStates"},
+    {method: "get", route: "/address/:state", controller: AddressController, action: "getAllCities"},
 ];

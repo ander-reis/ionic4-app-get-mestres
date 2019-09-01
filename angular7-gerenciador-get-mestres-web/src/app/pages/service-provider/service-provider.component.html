@@ -47,6 +47,10 @@
     <textarea matInput [(ngModel)]="model.description" placeholder="Descreva a descrição" rows="4"></textarea>
   </mat-form-field>
 
+  <div class="title-divider">
+    Endereço
+  </div>
+
   <mat-form-field appearance="outline" class="full-width">
     <mat-label>Endereço</mat-label>
     <input matInput [(ngModel)]="model.address"
@@ -60,6 +64,24 @@
            type="text"
            placeholder="Preencha o complemento do endereço">
   </mat-form-field>
+
+  <div class="title-divider">
+    Configurações de Atendimento
+  </div>
+
+  <div class="container-configuration">
+    <div class="card">
+      <mat-list dense>
+        <mat-list-item>Item adicionado</mat-list-item>
+      </mat-list>
+    </div>
+
+    <div class="card">
+      <mat-list dense>
+        <mat-list-item>Item adicionado</mat-list-item>
+      </mat-list>
+    </div>
+  </div>
 
   <div class="toolbar___form">
     <button mat-raised-button routerLink="/service-providers">Cancelar</button>
