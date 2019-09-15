@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
         this.menu.push({
             group: 'Segurança',
             items: [
-                {icon: 'security', label: 'Usuários', url: '/'},
+                {icon: 'security', label: 'Usuários', url: '/users'},
             ]
         });
 

@@ -4,11 +4,12 @@ import {BaseService} from "../base/base.service";
 import {ResultHttpInterface} from "../interfaces/ResultHttpInterface";
 import {environment} from "../../environments/environment";
 import {Observable, Subject} from "rxjs";
+import {UserModel} from "../model/UserModel";
 
 @Injectable({
     providedIn: 'root'
 })
-export class UserService extends BaseService<any> {
+export class UserService extends BaseService<UserModel> {
 
     private loginSubject = new Subject<boolean>();
 

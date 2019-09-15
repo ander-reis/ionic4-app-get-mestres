@@ -1,90 +1,163 @@
 <div class="container">
 
-  <app-input-file [image]="model.photo" (select)="selectedFile($event)"></app-input-file>
+    <app-input-file [image]="model.photo" (select)="selectedFile($event)"></app-input-file>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Nome</mat-label>
-    <input matInput [(ngModel)]="model.name"
-           type="text"
-           required
-           placeholder="Preencha o nome do cliente">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nome</mat-label>
+        <input matInput [(ngModel)]="model.name"
+               type="text"
+               required
+               placeholder="Preencha o nome do cliente">
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width" col-50>
-    <mat-label>E-mail</mat-label>
-    <input matInput [(ngModel)]="model.email"
-           type="email"
-           required
-           placeholder="Preencha o e-mail do cliente">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width" col-50>
+        <mat-label>E-mail</mat-label>
+        <input matInput [(ngModel)]="model.email"
+               type="email"
+               required
+               placeholder="Preencha o e-mail do cliente">
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width no-margin-right" col-50>
-    <mat-label>Telefone</mat-label>
-    <input matInput [(ngModel)]="model.phone"
-           type="text"
-           required
-           placeholder="Preencha o telefone do cliente">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width no-margin-right" col-50>
+        <mat-label>Telefone</mat-label>
+        <input matInput [(ngModel)]="model.phone"
+               type="text"
+               required
+               placeholder="Preencha o telefone do cliente">
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width" col-50 *ngIf="!model.uid">
-    <mat-label>Senha</mat-label>
-    <input matInput [(ngModel)]="model.password"
-           type="password"
-           required
-           placeholder="Informe a nova senha">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width" col-50 *ngIf="!model.uid">
+        <mat-label>Senha</mat-label>
+        <input matInput [(ngModel)]="model.password"
+               type="password"
+               required
+               placeholder="Informe a nova senha">
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width no-margin-right" col-50 *ngIf="!model.uid">
-    <mat-label>Confirmação de senha</mat-label>
-    <input matInput [(ngModel)]="model.confirmPassword"
-           type="password"
-           required
-           placeholder="Digite a senha novamente">
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width no-margin-right" col-50 *ngIf="!model.uid">
+        <mat-label>Confirmação de senha</mat-label>
+        <input matInput [(ngModel)]="model.confirmPassword"
+               type="password"
+               required
+               placeholder="Digite a senha novamente">
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Opções</mat-label>
-    <textarea matInput [(ngModel)]="model.description" placeholder="Descreva a descrição" rows="4"></textarea>
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Opções</mat-label>
+        <textarea matInput [(ngModel)]="model.description" placeholder="Descreva a descrição" rows="4"></textarea>
+    </mat-form-field>
 
-  <div class="title-divider">
-    Endereço
-  </div>
-
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Endereço</mat-label>
-    <input matInput [(ngModel)]="model.address"
-           type="text"
-           placeholder="Preencha o endereço">
-  </mat-form-field>
-
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Complemento</mat-label>
-    <input matInput [(ngModel)]="model.addressComplement"
-           type="text"
-           placeholder="Preencha o complemento do endereço">
-  </mat-form-field>
-
-  <div class="title-divider">
-    Configurações de Atendimento
-  </div>
-
-  <div class="container-configuration">
-    <div class="card">
-      <mat-list dense>
-        <mat-list-item>Item adicionado</mat-list-item>
-      </mat-list>
+    <div class="title-divider">
+        Endereço
     </div>
 
-    <div class="card">
-      <mat-list dense>
-        <mat-list-item>Item adicionado</mat-list-item>
-      </mat-list>
-    </div>
-  </div>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>CEP</mat-label>
+        <input matInput [(ngModel)]="model.zipCode"
+               type="text"
+               placeholder="CEP">
+    </mat-form-field>
 
-  <div class="toolbar___form">
-    <button mat-raised-button routerLink="/service-providers">Cancelar</button>
-    <button mat-raised-button color="primary" (click)="save()">Salvar</button>
-  </div>
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Endereço</mat-label>
+        <input matInput [(ngModel)]="model.address"
+               type="text"
+               placeholder="Preencha o endereço">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Complemento</mat-label>
+        <input matInput [(ngModel)]="model.addressComplement"
+               type="text"
+               placeholder="Preencha o complemento do endereço">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width" col-50>
+        <mat-label>Estados</mat-label>
+        <mat-select [(ngModel)]="model.state" (selectionChange)="bindCities(model.state)">
+            <mat-option *ngFor="let state of states" [value]="state.sigla">
+                {{ state.nome }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width no-margin-right" col-50>
+        <mat-label>Cidade</mat-label>
+        <mat-select [(ngModel)]="model.city" [disabled]="!model.state">
+            <mat-option *ngFor="let city of cities" [value]="city">
+                {{ city }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="title-divider">
+        Configurações de Atendimento
+    </div>
+
+    <div class="container-configuration">
+        <div class="card">
+            <h4>Cidades Atendidas</h4>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Cidade</mat-label>
+                <mat-select [disabled]="!model.state" (selectionChange)="selectCityCare($event.value)">
+                    <mat-option *ngFor="let city of cities" [value]="city">
+                        {{ city }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-list dense>
+                <mat-list-item *ngFor="let city of citiesCare; let i = index">
+                    <p mat-line>{{ city }}</p>
+                    <button mat-button (click)="removeCitiesCare(i)">
+                        <mat-icon class="mat-24">delete</mat-icon>
+                    </button>
+                </mat-list-item>
+
+                <mat-list-item *ngIf="citiesCare.length === 0">
+                    Nenhuma Cidade Atendida
+                </mat-list-item>
+
+            </mat-list>
+        </div>
+
+        <div class="card">
+            <h4>SubCategorias Atendidas</h4>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Categoria</mat-label>
+                <mat-select [(ngModel)]="categorySelect" (selectionChange)="bindSubCategories(categorySelect)">
+                    <mat-option *ngFor="let category of categories" [value]="category.uid">
+                        {{ category.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>SubCategoria</mat-label>
+                <mat-select [(ngModel)]="subCategorySelect" [disabled]="!categorySelect" (selectionChange)="selectSubCategory(subCategorySelect)">
+                    <mat-option *ngFor="let subCategory of subCategories" [value]="subCategory">
+                        {{ subCategory.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-list dense>
+                <mat-list-item *ngFor="let subCategory of categoriesCare; let i = index">
+                    <p mat-line>{{ subCategory }}</p>
+                    <button mat-button (click)="removeCategoryCare(i)">
+                        <mat-icon class="mat-24">delete</mat-icon>
+                    </button>
+                </mat-list-item>
+                <mat-list-item *ngIf="categoriesCare.length === 0">Nenhuma SubCategoria Atendida</mat-list-item>
+            </mat-list>
+
+        </div>
+    </div>
+
+    <div class="toolbar___form">
+        <button mat-raised-button routerLink="/service-providers">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="save()">Salvar</button>
+    </div>
 </div>

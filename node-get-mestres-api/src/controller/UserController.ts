@@ -4,6 +4,7 @@ import {BaseController} from "./BaseController";
 import {sign} from 'jsonwebtoken';
 import config from '../config/config';
 import * as md5 from 'md5';
+import {FileHelper} from "../helpers/fileHelper";
 
 export class UserController extends BaseController<User> {
 
@@ -47,6 +48,13 @@ export class UserController extends BaseController<User> {
         _user.photo = photo;
         _user.email = email;
 
+        if (_user.photo) {
+            let pictureCreateResult = await FileHelper.writePicture(_user.photo);
+            if (pictureCreateResult) {
+                _user.photo = pictureCreateResult;
+            }
+        }
+
         if (password !== confirmPassword) {
             return {status: 400, errors: ['A senha e a confirmação são diferente']}
         }
@@ -64,6 +72,14 @@ export class UserController extends BaseController<User> {
         let _user = request.body;
         super.isRequired(_user.name, 'O nome do usuário é obrigatório');
         super.isRequired(_user.photo, 'A foto do usuário é obrigatória');
+
+        if (_user.photo) {
+            let pictureCreateResult = await FileHelper.writePicture(_user.photo);
+            if (pictureCreateResult) {
+                _user.photo = pictureCreateResult;
+            }
+        }
+
         return super.save(_user, request);
     }
 }
