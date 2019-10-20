@@ -15,15 +15,22 @@
 </ion-header>
 
 <ion-content>
-    <ion-card>
+    <ion-card *ngFor="let request of list">
         <ion-card-title>
-            Criar novo aplicativo
+            {{ request.title }}
         </ion-card-title>
         <ion-card-subtitle>
-            Software e Aplicativo
+            {{ request.subCategory.name }}
         </ion-card-subtitle>
         <ion-card-content>
-            Gostaria de criar um aplicativo?
+            {{ request.description | truncate:50 }}
         </ion-card-content>
     </ion-card>
+
+    <ion-card *ngIf="list.length === 0">
+        <ion-card-content>
+            Você ainda não fez nenhuma solicitação, clique no botão + acima para começar :D
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>
