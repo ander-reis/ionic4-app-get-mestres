@@ -22,7 +22,7 @@ app.use(cors());
 /**
  * habilita autenticação
  */
-app.use(auth);
+// app.use(auth);
 
 
 // register express routes from defined application routes

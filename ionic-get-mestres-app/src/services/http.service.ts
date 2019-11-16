@@ -43,13 +43,13 @@ export class HttpService {
     return new Promise<ResultHttpInterface>(async (resolve) => {
       // return new Promise(async (resolve) => {
       try {
-        this.spinnerSrv.show();
+        await this.spinnerSrv.show();
         // console.log(header);
         const res = await this.http.get(url, {headers: header}).toPromise();
         resolve({success: true, data: res, error: undefined});
-        this.spinnerSrv.hide();
+        await this.spinnerSrv.hide();
       } catch (error) {
-        this.spinnerSrv.hide();
+        await await this.spinnerSrv.hide();
         resolve({success: false, data: {}, error: error});
       }
     });
@@ -60,12 +60,12 @@ export class HttpService {
 
     return new Promise(async (resolve) => {
       try {
-        this.spinnerSrv.show();
+        await this.spinnerSrv.show();
         const res = await this.http.post(url, model, {headers: header}).toPromise();
         resolve({success: true, data: res, error: undefined});
-        this.spinnerSrv.hide();
+        await this.spinnerSrv.hide();
       } catch (error) {
-        this.spinnerSrv.hide();
+        await this.spinnerSrv.hide();
         if (error.status === 400) {
 
           let errorText = '<ul>';
@@ -74,7 +74,7 @@ export class HttpService {
               errorText += `<li style="text-align: left">${element.message || element}</li>;`
             });
             errorText += '</ul>';
-            this.alertSrv.alert('Atenção', errorText);
+            await this.alertSrv.alert('Atenção', errorText);
           }
         }
         resolve({success: false, data: {}, error: error});
@@ -87,12 +87,12 @@ export class HttpService {
 
     return new Promise(async (resolve) => {
       try {
-        this.spinnerSrv.show();
+        await this.spinnerSrv.show();
         const res = await this.http.delete(url, {headers: header}).toPromise();
         resolve({success: true, data: res, error: undefined});
-        this.spinnerSrv.hide();
+        await this.spinnerSrv.hide();
       } catch (error) {
-        this.spinnerSrv.hide();
+        await this.spinnerSrv.hide();
         resolve({success: false, data: {}, error: error});
       }
     });
