@@ -6,6 +6,7 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
+  { path: 'nova-solicitacao-perguntas', loadChildren: './nova-solicitacao-perguntas/nova-solicitacao-perguntas.module#NovaSolicitacaoPerguntasPageModule' },
 ];
 @NgModule({
   imports: [

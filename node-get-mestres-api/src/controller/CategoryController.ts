@@ -32,7 +32,8 @@ export class CategoryController extends BaseController<Category> {
         return this._subCategoryRepository.find({
             where: {
                 category: categoryId,
-                deleted: false
+                deleted: false,
+                active: true
             }
         });
     }

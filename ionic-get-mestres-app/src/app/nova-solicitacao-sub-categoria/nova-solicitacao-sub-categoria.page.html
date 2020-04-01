@@ -5,16 +5,20 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-title>Nova Solicitação</ion-title>
+    <ion-title>{{ category.name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let item of categories" (click)="selectCategory(item)">
+      <ion-col size="6" *ngFor="let item of subCategories" (click)="selectSubCategory(item)">
         <div>{{ item.name }}</div>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <div class="empty" *ngIf="subCategories.lenght === 0">
+    Não existem SubCategorias na Categoria {{ category.name }}
+  </div>
 </ion-content>

@@ -25,8 +25,9 @@ export const Routes = [{method: "get", route: "/users", controller: UserControll
     {method: "post", route: "/category", controller: CategoryController, action: "save"},
     {method: "delete", route: "/category/:id", controller: CategoryController, action: "remove"},
 
-    //subcategory
+    // subcategory
     {method: "get", route: "/subcategory", controller: SubCategoryController, action: "all"},
+    {method: "get", route: "/subcategory/:id/questions", controller: SubCategoryController, action: "getAllQuestions"},
     {method: "get", route: "/subcategory/:id", controller: SubCategoryController, action: "one"},
     {method: "post", route: "/subcategory", controller: SubCategoryController, action: "save"},
     {method: "delete", route: "/subcategory/:id", controller: SubCategoryController, action: "remove"},

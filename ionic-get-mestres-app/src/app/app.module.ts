@@ -15,7 +15,10 @@ import {HttpClientModule} from "@angular/common/http";
     entryComponents: [],
     imports: [
         BrowserModule,
-        IonicModule.forRoot(),
+        IonicModule.forRoot({
+            // backButtonText: 'Voltar',
+            mode: "md"
+        }),
         AppRoutingModule,
         HttpClientModule
     ],

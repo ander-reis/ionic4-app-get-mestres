@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatTableDataSource} from "@angular/material";
-import {ServiceProviderModel} from "../../model/serviceProviderModel";
+import {ServiceProviderModel} from "../../model/ServiceProviderModel";
 import {ServiceProviderService} from "../../services/service-provider.service";
 import {Constants} from "../../shared/constants";
 import Swal from "sweetalert2";

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CategoryService} from "../../services/category.service";
 import {CategoryModel} from "../../models/CategoryModel";
+import {Route, Router} from "@angular/router";
 
 @Component({
     selector: 'app-nova-solicitacao',
@@ -11,7 +12,10 @@ export class NovaSolicitacaoPage implements OnInit {
 
     categories: Array<CategoryModel> = new Array<CategoryModel>();
 
-    constructor(private categorySrv: CategoryService) {
+    constructor(
+        private categorySrv: CategoryService,
+        private router: Router
+        ) {
     }
 
     ngOnInit() {
@@ -23,5 +27,11 @@ export class NovaSolicitacaoPage implements OnInit {
         if (result.success) {
             this.categories = result.data as Array<CategoryModel>;
         }
+    }
+
+    selectCategory(category: CategoryModel): void {
+        this.router.navigate(['/tabs/tabSolicitacoes/nova-solicitacao-sub-categoria/'], {
+            state: category
+        })
     }
 }
