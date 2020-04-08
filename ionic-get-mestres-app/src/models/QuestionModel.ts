@@ -4,8 +4,8 @@ import {QuestionType} from "./enums/QuestionType";
 
 export class QuestionModel extends BaseModel {
     question: string;
-    type: number;
-    options: QuestionType;
+    type: QuestionType;
+    options: string;
     subCategory: SubCategoryModel;
 
     constructor(){

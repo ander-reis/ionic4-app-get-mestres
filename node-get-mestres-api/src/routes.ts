@@ -43,6 +43,7 @@ export const Routes = [{method: "get", route: "/users", controller: UserControll
     {method: "get", route: "/customer/:id", controller: CustomerController, action: "one"},
     {method: "post", route: "/customer", controller: CustomerController, action: "save"},
     {method: "post", route: "/customer/create", controller: CustomerController, action: "createCustomer"},
+    {method: "post", route: "/customer/auth", controller: CustomerController, action: "auth"},
     {method: "delete", route: "/customer/:id", controller: CustomerController, action: "remove"},
 
     // service provider
@@ -50,7 +51,9 @@ export const Routes = [{method: "get", route: "/users", controller: UserControll
     {method: "get", route: "/service-provider/:id", controller: ServiceProviderController, action: "one"},
     {method: "post", route: "/service-provider", controller: ServiceProviderController, action: "save"},
     {method: "post", route: "/service-provider/create", controller: ServiceProviderController, action: "createServiceProvider"},
+    {method: "post", route: "/serviceProvider/auth", controller: ServiceProviderController, action: "auth"},
     {method: "delete", route: "/service-provider/:id", controller: ServiceProviderController, action: "remove"},
+
 
     // request
     {method: "get", route: "/request-order", controller: RequestOrderController, action: "all"},

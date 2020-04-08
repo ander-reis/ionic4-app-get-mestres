@@ -7,6 +7,8 @@ export default {
         'users/create',
         'users/auth',
         'customer/create',
+        'customer/auth',
+        'service-provider/auth',
         'storage',
         'address'
     ],

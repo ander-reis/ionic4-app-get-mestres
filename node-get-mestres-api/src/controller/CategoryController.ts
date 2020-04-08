@@ -27,7 +27,7 @@ export class CategoryController extends BaseController<Category> {
         });
     }
 
-    getAllSubCategories(request: Request) {
+    async getAllSubCategories(request: Request) {
         const {id: categoryId} = request.params;
         return this._subCategoryRepository.find({
             where: {

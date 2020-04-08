@@ -4,6 +4,8 @@ import {SubCategoryModel} from "../../models/SubCategoryModel";
 import {QuestionModel} from "../../models/QuestionModel";
 import {QuestionsService} from "../../services/questions.service";
 import {NavController} from "@ionic/angular";
+import {Geolocation} from '@ionic-native/geolocation/ngx';
+import {RequestOrderModel} from "../../models/RequestOrderModel";
 
 @Component({
   selector: 'app-nova-solicitacao-perguntas',
@@ -15,11 +17,13 @@ export class NovaSolicitacaoPerguntasPage implements OnInit {
   subCategory: SubCategoryModel = new SubCategoryModel();
   questions: Array<QuestionModel> = new Array<QuestionModel>();
   answers: any = [];
+  request: RequestOrderModel = new RequestOrderModel();
 
   constructor(
       private router: Router,
       private questionSrv: QuestionsService,
-      private navCtrl: NavController
+      private navCtrl: NavController,
+      private geolocation: Geolocation
   ) { }
 
   ngOnInit() {
@@ -48,10 +52,13 @@ export class NovaSolicitacaoPerguntasPage implements OnInit {
   }
 
   getOptions(question: QuestionModel) {
+    console.log(question.options);
     return question.options.split(',').map(o => o.trim());
   }
 
-  send() {
-    console.log(this.answers);
+  async send() {
+    // const { coords } = await this.geolocation.getCurrentPosition();
+    // this.request.longlat = `${coords.longitude};${coords.latitude}`;
+    // this.request.subCategory = this.subCategory.uid;
   }
 }

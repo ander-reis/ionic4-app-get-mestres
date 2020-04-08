@@ -10,17 +10,19 @@ export class RequestOrderController extends BaseController<RequestOrder> {
     }
 
     async save(request: Request) {
-        let _requestOrder = <RequestOrder>request.body;
+        let _request = <RequestOrder>request.body;
+        _request.customer.uid = request.userAuth.uid;
 
-        super.isRequired(_requestOrder.longlat, 'Latitude e longitude é obrigatório');
-        super.isRequired(_requestOrder.title, 'Título obrigatório');
-        super.isRequired(_requestOrder.description, 'Descrição é obrigatório');
-        super.isRequired(_requestOrder.customer, 'Customer é obrigatório');
+        super.isRequired(_request.title, 'Título obrigatório');
+        super.isRequired(_request.description, 'Descrição é obrigatório');
+        // super.isRequired(_request.customer, 'Customer é obrigatório');
+        super.isRequired(_request.longlat, 'Latitude e longitude é obrigatório');
+        super.isRequired(_request.subCategory, 'Informe a subCategoria do pedido');
 
-        if(!_requestOrder.uid){
-            _requestOrder.statusOrder = RequestStatus.pending;
+        if (!_request.uid) {
+            _request.statusOrder = RequestStatus.pending;
         }
 
-        return super.save(_requestOrder, request);
+        return super.save(_request, request);
     }
 }

@@ -1,5 +1,7 @@
 {
   "name": "ionic-get-mestres-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

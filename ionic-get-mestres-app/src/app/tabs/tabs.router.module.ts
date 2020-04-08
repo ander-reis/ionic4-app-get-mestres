@@ -1,8 +1,11 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {TabsPage} from './tabs.page';
+import { constants } from '../../shared/constants';
 
-const perfil: string = localStorage.getItem('getmestres:perfil');
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { TabsPage } from './tabs.page';
+
+
+const perfil: string = localStorage.getItem(constants.keyStore.profile);
 
 const routes: Routes = [
     {
@@ -53,8 +56,7 @@ const routes: Routes = [
                 children: [
                     {
                         path: '',
-                        loadChildren: () =>
-                            import('../solicitacoes/solicitacoes.module').then(m => m.SolicitacoesPageModule)
+                        loadChildren: () => import('../solicitacoes/solicitacoes.module').then(m => m.SolicitacoesPageModule)
                     },
                     {
                         path: 'nova-solicitacao',
@@ -69,7 +71,7 @@ const routes: Routes = [
                         path: 'nova-solicitacao-perguntas',
                         loadChildren: () => import('../nova-solicitacao-perguntas/nova-solicitacao-perguntas.module')
                             .then(m => m.NovaSolicitacaoPerguntasPageModule)
-                    },
+                    }
                 ]
             },
             {
@@ -84,14 +86,14 @@ const routes: Routes = [
             },
             {
                 path: '',
-                redirectTo: '/tabs/tabDisponiveis',
+                redirectTo: perfil === 'serviceProvider' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
                 pathMatch: 'full'
-            },
+            }
         ]
     },
     {
         path: '',
-        redirectTo: perfil === 'profissional' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
+        redirectTo: perfil === 'serviceProvider' ? '/tabs/tabDisponiveis' : '/tabs/tabSolicitacoes',
         pathMatch: 'full'
     }
 ];
@@ -100,5 +102,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class TabsPageRoutingModule {
-}
+export class TabsPageRoutingModule { }

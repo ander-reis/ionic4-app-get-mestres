@@ -39,7 +39,7 @@ export abstract class BaseController<T> extends BaseNotification {
             return this.errorRoot;
         }
 
-        const uid = request.params.is as string;
+        const uid = request.params.id as string;
         return this._repository.findOne(uid);
     }
 

@@ -22,11 +22,6 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-
-      /**
-       * configura alteração de tabs profissional/cliente
-       */
-      localStorage.setItem('getmestres:perfil', 'cliente');
     });
   }
 }
